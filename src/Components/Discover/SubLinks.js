@@ -7,6 +7,13 @@ const SubLinks = ({ isLoggedIn }) => {
     <MDBRow>
       <MDBCol md="12" className="text-center">
         <NavLink exact to="/discover" className="btn me-3 btn-outline-primary">
+          Discover
+        </NavLink>
+        <NavLink
+          exact
+          to="/discover/all"
+          className="btn me-3 btn-outline-primary"
+        >
           All
         </NavLink>
         <NavLink
