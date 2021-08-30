@@ -7,13 +7,13 @@ import SubLinks from "../../../Components/Discover/SubLinks";
 
 import "./index.css";
 
-const Latest = ({ isLoggedIn, latestMoviesLoading, latestMovies }) => {
+const All = ({ isLoggedIn, allMovies, allMoviesLoading }) => {
   return (
     <MDBContainer>
-      <Heading title="Latest Movies" />
+      <Heading title="All Movies" />
       <SubLinks isLoggedIn={isLoggedIn} />
 
-      {latestMoviesLoading ? (
+      {allMoviesLoading ? (
         <MDBRow className="my-5">
           <MDBCol md={12}>
             <h1 className="display-1 text-center">Loading...</h1>
@@ -21,7 +21,7 @@ const Latest = ({ isLoggedIn, latestMoviesLoading, latestMovies }) => {
         </MDBRow>
       ) : (
         <MDBRow className="mt-5">
-          {latestMovies.map((item, index) => (
+          {allMovies.map((item, index) => (
             <Card item={item} key={index * item.popularity} />
           ))}
         </MDBRow>
@@ -30,4 +30,4 @@ const Latest = ({ isLoggedIn, latestMoviesLoading, latestMovies }) => {
   );
 };
 
-export default Latest;
+export default All;

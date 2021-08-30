@@ -6,6 +6,7 @@ import {
   getPopularMovies,
 } from "../../apis/getMovies";
 import Navbar from "../../Components/Navbar";
+import All from "./All";
 
 import Discover from "./Discover";
 import Favorites from "./Favorites";
@@ -70,19 +71,42 @@ const Movies = ({ isLoggedIn, user }) => {
         />
         <Route
           exact
+          path={`${path}/all`}
+          component={() => (
+            <All
+              isLoggedIn={isLoggedIn}
+              allMoviesLoading={allMoviesLoading}
+              allMovies={allMovies}
+            />
+          )}
+        />
+        <Route
+          exact
           path={`${path}/popular`}
-          component={() => <Popular isLoggedIn={isLoggedIn} />}
+          component={() => (
+            <Popular
+              isLoggedIn={isLoggedIn}
+              popularMovies={popularMovies}
+              popularMoviesLoading={popularMoviesLoading}
+            />
+          )}
         />
         <Route
           exact
           path={`${path}/latest`}
-          component={() => <Latest isLoggedIn={isLoggedIn} />}
+          component={() => (
+            <Latest
+              isLoggedIn={isLoggedIn}
+              latestMovies={latestMovies}
+              latestMoviesLoading={latestMoviesLoading}
+            />
+          )}
         />
         {isLoggedIn && (
           <Route
             exact
             path={`${path}/favorites`}
-            component={() => <Favorites />}
+            component={() => <Favorites isLoggedIn={isLoggedIn} />}
           />
         )}
       </Switch>

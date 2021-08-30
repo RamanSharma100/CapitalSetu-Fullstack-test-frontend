@@ -4,8 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
+  MDBBtn,
   MDBCard,
   MDBCardBody,
+  MDBCardFooter,
   MDBCardSubTitle,
   MDBCardText,
   MDBCardTitle,
@@ -92,27 +94,53 @@ const MovieCards = ({ isLoading, data, heading, path }) => {
             {data.map((item, index) => (
               <MDBCard
                 border
-                className="me-3"
+                className="me-3 "
                 key={index * item.popularity}
-                style={{ cursor: "pointer !important" }}
+                style={{
+                  cursor: "pointer !important",
+                }}
               >
-                <Link to="" className="link-dark">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                    height="400"
-                    width="100%"
-                    alt={item.original_title}
-                  />
-                  <MDBCardBody>
-                    <MDBCardTitle className="text-center small">
-                      {item.original_title}
-                    </MDBCardTitle>
-                    <div className="d-flex py-3 align-items-center justify-content-between">
-                      <p className="small">Release year: {item.release_date}</p>
-                      <p className="small">Rating: {item.vote_average}</p>
-                    </div>
-                  </MDBCardBody>
-                </Link>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                  height="400"
+                  width="100%"
+                  alt={item.original_title}
+                />
+                <MDBCardBody>
+                  <MDBCardTitle className="text-center small">
+                    {item.original_title}
+                  </MDBCardTitle>
+                  <div className="d-flex py-3 align-items-center justify-content-between">
+                    <p className="small badge badge-primary">
+                      Release year: {item.release_date}
+                    </p>
+                    <p className="small badge badge-dark">
+                      Rating: {item.vote_average}
+                    </p>
+                  </div>
+                  <p
+                    className="small my-0 text-justify"
+                    style={{ height: "80px" }}
+                  >
+                    {item.overview.slice(0, 90)}...
+                  </p>
+                </MDBCardBody>
+                <MDBCardFooter
+                  background="white"
+                  border="0"
+                  className="d-flex aling-items-center pb-4 justify-content-between"
+                >
+                  <Link to="" className="btn btn-primary">
+                    <i className="fas fa-eye"></i> See More
+                  </Link>
+                  <MDBBtn color="transparent" className="shadow-0">
+                    <i
+                      className="fas fa-heart fs-5 text-white"
+                      style={{ WebkitTextStroke: "1px #000" }}
+                      title="Add to Favorites"
+                    ></i>
+                  </MDBBtn>
+                </MDBCardFooter>
               </MDBCard>
             ))}
           </Slider>
