@@ -1,0 +1,7 @@
+.navbar ul.navbar-nav li a {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.navbar .navbar-nav a.active,
+.navbar .navbar-nav a.btn {
+  color: rgba(255, 255, 255, 1) !important;
+}

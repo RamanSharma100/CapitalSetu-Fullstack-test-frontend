@@ -1,0 +1,8 @@
+.home-header {
+  background: linear-gradient(to top, #000428d8, #004e92d7),
+    url("https://images.pexels.com/photos/3945317/pexels-photo-3945317.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+a.btn:hover {
+  background-color: #1266f1;
+  border-color: #1266f1;
+}

@@ -1,15 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
-// mdb css 
-import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+import App from "./App";
+
+// mdb css
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
+// react toastify-css
+import "react-toastify/dist/ReactToastify.css";
+
+// cusom css
+import "./index.css";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Router>,
+  document.getElementById("root")
 );
-
