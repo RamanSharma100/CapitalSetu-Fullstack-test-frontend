@@ -7,7 +7,13 @@ import SubLinks from "../../../Components/Discover/SubLinks";
 
 import "./index.css";
 
-const All = ({ isLoggedIn, allMovies, allMoviesLoading }) => {
+const All = ({
+  isLoggedIn,
+  allMovies,
+  allMoviesLoading,
+  favoriteMovies,
+  addfavoriteMovie,
+}) => {
   return (
     <MDBContainer>
       <Heading title="All Movies" />
@@ -22,7 +28,16 @@ const All = ({ isLoggedIn, allMovies, allMoviesLoading }) => {
       ) : (
         <MDBRow className="mt-5">
           {allMovies.map((item, index) => (
-            <Card item={item} key={index * item.popularity} />
+            <Card
+              item={item}
+              key={index * item.popularity}
+              favorite={
+                favoriteMovies.filter(
+                  (itm) => JSON.stringify(itm) === JSON.stringify(item)
+                ).length > 0
+              }
+              addfavoriteMovie={addfavoriteMovie}
+            />
           ))}
         </MDBRow>
       )}

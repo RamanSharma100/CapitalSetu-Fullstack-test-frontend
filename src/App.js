@@ -22,7 +22,7 @@ const App = () => {
       return setUser(null);
     }
 
-    const decodedToken = jwt_decode(JSON.parse(getUser)).token;
+    const decodedToken = jwt_decode(JSON.parse(getUser).token);
 
     if (decodedToken.exp <= Date.now() / 1000) {
       toast.error("Login session expired! please login again!");
@@ -33,7 +33,7 @@ const App = () => {
     if (!isLoggedIn) {
       setUser(JSON.parse(getUser));
       setIsLoggedIn(true);
-      console.log(user);
+      setUser(JSON.parse(getUser));
     }
   }, [window.location.pathname]);
 

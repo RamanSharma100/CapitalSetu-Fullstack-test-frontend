@@ -7,7 +7,13 @@ import SubLinks from "../../../Components/Discover/SubLinks";
 
 import "./index.css";
 
-const Popular = ({ isLoggedIn, popularMoviesLoading, popularMovies }) => {
+const Popular = ({
+  isLoggedIn,
+  popularMoviesLoading,
+  popularMovies,
+  favoriteMovies,
+  addfavoriteMovie,
+}) => {
   return (
     <MDBContainer>
       <Heading title="Popular Movies" />
@@ -22,7 +28,16 @@ const Popular = ({ isLoggedIn, popularMoviesLoading, popularMovies }) => {
       ) : (
         <MDBRow className="mt-5">
           {popularMovies.map((item, index) => (
-            <Card item={item} key={index * item.popularity} />
+            <Card
+              item={item}
+              key={index * item.popularity}
+              favorite={
+                favoriteMovies.filter(
+                  (itm) => JSON.stringify(itm) === JSON.stringify(item)
+                ).length > 0
+              }
+              addfavoriteMovie={addfavoriteMovie}
+            />
           ))}
         </MDBRow>
       )}

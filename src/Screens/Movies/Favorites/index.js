@@ -3,14 +3,35 @@ import React from "react";
 
 import Heading from "../../../Components/Discover/Heading";
 import SubLinks from "../../../Components/Discover/SubLinks";
+import Card from "../../../Components/Card";
 
 import "./index.css";
 
-const Favorites = ({ isLoggedIn }) => {
+const Favorites = ({ isLoggedIn, favoriteMovies, favoriteMoviesLoading }) => {
   return (
     <MDBContainer>
       <Heading title="Favorite Movies" />
       <SubLinks isLoggedIn={isLoggedIn} />
+
+      {favoriteMoviesLoading ? (
+        <MDBRow className="my-5">
+          <MDBCol md={12}>
+            <h1 className="display-1 text-center">Loading...</h1>
+          </MDBCol>
+        </MDBRow>
+      ) : favoriteMovies.length > 0 ? (
+        <MDBRow className="mt-5">
+          {favoriteMovies.map((item, index) => (
+            <Card item={item} key={index * item.popularity} favorite={true} />
+          ))}
+        </MDBRow>
+      ) : (
+        <MDBRow className="my-5">
+          <MDBCol md={12}>
+            <h1 className="display-1 text-center">No Favorite Movies Found</h1>
+          </MDBCol>
+        </MDBRow>
+      )}
     </MDBContainer>
   );
 };

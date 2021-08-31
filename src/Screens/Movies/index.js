@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
+  addFavorite,
   getAllMovies,
+  getFavoriteMovies,
   getLatestMovies,
   getPopularMovies,
 } from "../../apis/getMovies";
@@ -21,6 +24,18 @@ const Movies = ({ isLoggedIn, user }) => {
   const [latestMovies, setLatestMovies] = useState([]);
   const [popularMoviesLoading, setPopularMoviesLoading] = useState(true);
   const [popularMovies, setPopularMovies] = useState([]);
+  const [favoriteMoviesLoading, setFavoriteMoviesLoading] = useState(true);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
+
+  const addfavoriteMovie = async (item) => {
+    const { success } = await addFavorite(
+      user.token,
+      user.userData.email,
+      item
+    );
+    toast.success("Added to favorites!");
+    setFavoriteMovies((prevFavoriteMovies) => [...prevFavoriteMovies, item]);
+  };
 
   useEffect(async () => {
     if (allMoviesLoading) {
@@ -47,6 +62,18 @@ const Movies = ({ isLoggedIn, user }) => {
       setPopularMovies(results.results);
     }
   }, [popularMoviesLoading]);
+
+  // get favorite movies
+  useEffect(async () => {
+    if (favoriteMoviesLoading && isLoggedIn) {
+      const { results } = await getFavoriteMovies(
+        user.token,
+        user.userData.email
+      );
+      setFavoriteMoviesLoading(false);
+      setFavoriteMovies(results);
+    }
+  }, [favoriteMoviesLoading, isLoggedIn]);
   return (
     <>
       <Navbar isLoggedIn={isLoggedIn} user={user} />
@@ -63,49 +90,57 @@ const Movies = ({ isLoggedIn, user }) => {
               allMovies={allMovies.slice(0, 8)}
               popularMovies={popularMovies.slice(0, 8)}
               latestMovies={latestMovies.slice(0, 8)}
+              favoriteMovies={favoriteMovies}
+              addfavoriteMovie={addfavoriteMovie}
             />
           )}
         />
         <Route
-          exact
           path={`${path}/all`}
           component={() => (
             <All
               isLoggedIn={isLoggedIn}
               allMoviesLoading={allMoviesLoading}
               allMovies={allMovies}
+              favoriteMovies={favoriteMovies}
+              addfavoriteMovie={addfavoriteMovie}
             />
           )}
         />
         <Route
-          exact
           path={`${path}/popular`}
           component={() => (
             <Popular
               isLoggedIn={isLoggedIn}
               popularMovies={popularMovies}
               popularMoviesLoading={popularMoviesLoading}
+              favoriteMovies={favoriteMovies}
+              addfavoriteMovie={addfavoriteMovie}
             />
           )}
         />
         <Route
-          exact
           path={`${path}/latest`}
           component={() => (
             <Latest
               isLoggedIn={isLoggedIn}
               latestMovies={latestMovies}
               latestMoviesLoading={latestMoviesLoading}
+              favoriteMovies={favoriteMovies}
+              addfavoriteMovie={addfavoriteMovie}
             />
           )}
         />
-        {isLoggedIn && (
-          <Route
-            exact
-            path={`${path}/favorites`}
-            component={() => <Favorites isLoggedIn={isLoggedIn} />}
-          />
-        )}
+        <Route
+          path={`${path}/favorites`}
+          component={() => (
+            <Favorites
+              isLoggedIn={isLoggedIn}
+              favoriteMovies={favoriteMovies}
+              favoriteMoviesLoading={favoriteMoviesLoading}
+            />
+          )}
+        />
       </Switch>
     </>
   );

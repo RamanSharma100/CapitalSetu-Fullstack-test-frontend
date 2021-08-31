@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ item, index }) => {
+const Card = ({ item, index, favorite, addfavoriteMovie }) => {
   return (
     <MDBCard
       border
@@ -47,11 +47,23 @@ const Card = ({ item, index }) => {
           <i className="fas fa-eye"></i> See More
         </Link>
         <MDBBtn color="transparent" className="shadow-0">
-          <i
-            className="fas fa-heart fs-5 text-white"
-            style={{ WebkitTextStroke: "1px #000" }}
-            title="Add to Favorites"
-          ></i>
+          {favorite ? (
+            <i
+              className="fas fa-heart fs-5 "
+              style={{
+                WebkitTextStroke: "1px #017bf5",
+                color: "#017bf5",
+              }}
+              title="Delete from Favorites"
+            ></i>
+          ) : (
+            <i
+              className="fas fa-heart fs-5 text-white"
+              style={{ WebkitTextStroke: "1px #000" }}
+              title="Add to Favorites"
+              onClick={() => addfavoriteMovie(item)}
+            ></i>
+          )}
         </MDBBtn>
       </MDBCardFooter>
     </MDBCard>

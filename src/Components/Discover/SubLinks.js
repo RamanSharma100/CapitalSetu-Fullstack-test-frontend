@@ -33,7 +33,7 @@ const SubLinks = ({ isLoggedIn }) => {
         {isLoggedIn && (
           <NavLink
             exact
-            to="/discover/favourites"
+            to="/discover/favorites"
             className="btn btn-outline-primary"
           >
             Favourites

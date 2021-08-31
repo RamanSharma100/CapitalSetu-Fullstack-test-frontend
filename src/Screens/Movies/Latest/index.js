@@ -7,7 +7,13 @@ import SubLinks from "../../../Components/Discover/SubLinks";
 
 import "./index.css";
 
-const Latest = ({ isLoggedIn, latestMoviesLoading, latestMovies }) => {
+const Latest = ({
+  isLoggedIn,
+  latestMoviesLoading,
+  latestMovies,
+  favoriteMovies,
+  addfavoriteMovie,
+}) => {
   return (
     <MDBContainer>
       <Heading title="Latest Movies" />
@@ -22,7 +28,16 @@ const Latest = ({ isLoggedIn, latestMoviesLoading, latestMovies }) => {
       ) : (
         <MDBRow className="mt-5">
           {latestMovies.map((item, index) => (
-            <Card item={item} key={index * item.popularity} />
+            <Card
+              item={item}
+              key={index * item.popularity}
+              favorite={
+                favoriteMovies.filter(
+                  (itm) => JSON.stringify(itm) === JSON.stringify(item)
+                ).length > 0
+              }
+              addfavoriteMovie={addfavoriteMovie}
+            />
           ))}
         </MDBRow>
       )}

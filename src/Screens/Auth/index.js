@@ -54,7 +54,7 @@ const Auth = ({ setIsLoggedIn, setUser }) => {
       .then((data) => {
         setIsLoggedIn(true);
         toast.success("You are logged in successfully!");
-        localStorage.getItem("mm_profile", JSON.stringify(data.data));
+        localStorage.setItem("mm_profile", JSON.stringify(data.data));
         setUser(data.data);
         history.push("/");
       })

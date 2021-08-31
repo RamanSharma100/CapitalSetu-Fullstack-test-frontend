@@ -62,7 +62,14 @@ const PrevArrow = ({ className, style, onClick }) => {
 
 // main component
 
-const MovieCards = ({ isLoading, data, heading, path }) => {
+const MovieCards = ({
+  isLoading,
+  data,
+  heading,
+  path,
+  favoriteMovies,
+  addfavoriteMovie,
+}) => {
   const sliderSettings = {
     dots: true,
     infinite: false,
@@ -134,11 +141,25 @@ const MovieCards = ({ isLoading, data, heading, path }) => {
                     <i className="fas fa-eye"></i> See More
                   </Link>
                   <MDBBtn color="transparent" className="shadow-0">
-                    <i
-                      className="fas fa-heart fs-5 text-white"
-                      style={{ WebkitTextStroke: "1px #000" }}
-                      title="Add to Favorites"
-                    ></i>
+                    {favoriteMovies.filter(
+                      (itm) => JSON.stringify(itm) === JSON.stringify(item)
+                    ).length > 0 ? (
+                      <i
+                        className="fas fa-heart fs-5 "
+                        style={{
+                          WebkitTextStroke: "1px #017bf5",
+                          color: "#017bf5",
+                        }}
+                        title="Delete from Favorites"
+                      ></i>
+                    ) : (
+                      <i
+                        className="fas fa-heart fs-5 text-white"
+                        style={{ WebkitTextStroke: "1px #000" }}
+                        onClick={() => addfavoriteMovie(item)}
+                        title="Add to Favorites"
+                      ></i>
+                    )}
                   </MDBBtn>
                 </MDBCardFooter>
               </MDBCard>

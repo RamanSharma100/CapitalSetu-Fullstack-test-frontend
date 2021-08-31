@@ -47,7 +47,8 @@ const Navbar = ({ isLoggedIn, user }) => {
               <>
                 <MDBNavbarItem className="ms-3">
                   <p className="my-0 text-white">
-                    Welcome, <strong>Raman Sharma</strong>{" "}
+                    Welcome,{" "}
+                    <strong className="text-title">{user.userData.name}</strong>{" "}
                   </p>
                 </MDBNavbarItem>
                 <MDBNavbarItem>
