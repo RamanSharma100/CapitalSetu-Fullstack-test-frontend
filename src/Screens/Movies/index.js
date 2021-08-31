@@ -24,30 +24,27 @@ const Movies = ({ isLoggedIn, user }) => {
 
   useEffect(async () => {
     if (allMoviesLoading) {
-      const data = await getAllMovies();
+      const { results } = await getAllMovies();
       setAllMoviesLoading(false);
-      setAllMovies(data.results);
-      console.log(data.results);
+      setAllMovies(results.results);
     }
   }, [allMoviesLoading]);
 
   // get latest movies
   useEffect(async () => {
     if (latestMoviesLoading) {
-      const data = await getLatestMovies();
+      const { results } = await getLatestMovies();
       setLatestMoviesLoading(false);
-      setLatestMovies(data.results);
-      console.log(data.results);
+      setLatestMovies(results.results);
     }
   }, [latestMoviesLoading]);
 
   // get popular movies
   useEffect(async () => {
     if (popularMoviesLoading) {
-      const data = await getPopularMovies();
+      const { results } = await getPopularMovies();
       setPopularMoviesLoading(false);
-      setPopularMovies(data.results);
-      console.log(data.results);
+      setPopularMovies(results.results);
     }
   }, [popularMoviesLoading]);
   return (

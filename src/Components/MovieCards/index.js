@@ -24,14 +24,14 @@ const NextArrow = ({ className, style, onClick }) => {
       style={{
         ...style,
         display: "flex",
-        height: "100%",
         alignItems: "center",
         justifyContent: "center",
         width: "50px",
         zIndex: "10",
-        background: "rgba(0 ,0, 0, 0.8)",
-        marginRight: "-2%",
+        background: "#1266f1",
+        marginRight: "-3%",
         borderRadius: "5px",
+        padding: "30px 0",
       }}
       onClick={onClick}
     />
@@ -45,15 +45,15 @@ const PrevArrow = ({ className, style, onClick }) => {
       style={{
         ...style,
         display: "flex",
-        height: "100%",
         alignItems: "center",
         justifyContent: "center",
         fontSize: "80px",
         width: "50px",
         zIndex: "10",
-        background: "rgba(0 ,0, 0, 0.8)",
-        marginLeft: "-2%",
+        background: "#1266f1",
+        marginLeft: "-3%",
         borderRadius: "5px",
+        padding: "30px 0",
       }}
       onClick={onClick}
     />
