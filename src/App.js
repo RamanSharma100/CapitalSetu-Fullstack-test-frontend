@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import jwt_decode from "jwt-decode";
 
 import Auth from "./Screens/Auth";
 
@@ -11,6 +12,30 @@ import Movies from "./Screens/Movies";
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+
+  //checking login token is expired or not
+  useEffect(() => {
+    const getUser = localStorage.getItem("mm_profile");
+
+    if (!getUser) {
+      setIsLoggedIn(false);
+      return setUser(null);
+    }
+
+    const decodedToken = jwt_decode(JSON.parse(getUser)).token;
+
+    if (decodedToken.exp <= Date.now() / 1000) {
+      toast.error("Login session expired! please login again!");
+      setIsLoggedIn(false);
+      return setUser(null);
+    }
+
+    if (!isLoggedIn) {
+      setUser(JSON.parse(getUser));
+      setIsLoggedIn(true);
+      console.log(user);
+    }
+  }, [window.location.pathname]);
 
   return (
     <div className="App">

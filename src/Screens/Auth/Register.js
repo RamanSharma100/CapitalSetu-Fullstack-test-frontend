@@ -13,7 +13,7 @@ const Register = ({ setIsLoggedIn, registerUser }) => {
     if (!email || !password || !name)
       return toast.dark("Please fill in all fields !");
 
-    registerUser(email, password);
+    registerUser(email, password, name);
     setEmail("");
     setPassword("");
     setName("");

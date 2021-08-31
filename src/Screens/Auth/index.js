@@ -12,9 +12,15 @@ import { toast } from "react-toastify";
 
 import Login from "./Login";
 import Register from "./Register";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Auth = ({ setIsLoggedIn, setUser }) => {
+  const API_ENDPOINT =
+    process.env.React_App_SERVER_API || "http://localhost:5000";
   const [justifyActive, setJustifyActive] = useState("login");
+
+  const history = useHistory();
 
   const handleJustifyClick = (value) => {
     if (value === justifyActive) {
@@ -24,17 +30,36 @@ const Auth = ({ setIsLoggedIn, setUser }) => {
     setJustifyActive(value);
   };
 
-  const registerUser = async (email, password, name) => {
-    setJustifyActive("login");
-    toast.success("You are registered successfully! please login");
+  const registerUser = (email, password, name) => {
+    const data = { email, password, name };
+    axios(`${API_ENDPOINT}/api/auth/register`, {
+      method: "POST",
+      data,
+    })
+      .then((dta) => {
+        setJustifyActive("login");
+        toast.success("You are registered successfully! please login");
+      })
+      .catch((err) => toast.error(err.response.data.msg));
     // console.log(user);
   };
 
   const loginUser = async (email, password) => {
     // setUser(user);
-    toast.success("You are logged in successfully!");
+    axios
+      .post(`${API_ENDPOINT}/api/auth/login`, {
+        email,
+        password,
+      })
+      .then((data) => {
+        setIsLoggedIn(true);
+        toast.success("You are logged in successfully!");
+        localStorage.getItem("mm_profile", JSON.stringify(data.data));
+        setUser(data.data);
+        history.push("/");
+      })
+      .catch((err) => toast.error(err.response.data.msg));
     // console.log(user);
-    setIsLoggedIn(true);
   };
 
   return (
