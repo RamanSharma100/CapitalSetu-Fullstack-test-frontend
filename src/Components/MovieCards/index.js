@@ -138,7 +138,10 @@ const MovieCards = ({
                   border="0"
                   className="d-flex aling-items-center pb-4 justify-content-between"
                 >
-                  <Link to="" className="btn btn-primary">
+                  <Link
+                    to={`/discover/movie/${item.id}`}
+                    className="btn btn-primary"
+                  >
                     <i className="fas fa-eye"></i> See More
                   </Link>
                   <MDBBtn color="transparent" className="shadow-0">

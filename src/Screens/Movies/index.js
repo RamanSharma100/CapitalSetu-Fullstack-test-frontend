@@ -15,6 +15,7 @@ import All from "./All";
 import Discover from "./Discover";
 import Favorites from "./Favorites";
 import Latest from "./Latest";
+import MovieDescription from "./MovieDescription";
 import Popular from "./Popular";
 
 const Movies = ({ isLoggedIn, user, logout }) => {
@@ -57,6 +58,7 @@ const Movies = ({ isLoggedIn, user, logout }) => {
       const { results } = await getAllMovies();
       setAllMoviesLoading(false);
       setAllMovies(results.results);
+      console.log(results);
     }
   }, [allMoviesLoading]);
 
@@ -145,6 +147,17 @@ const Movies = ({ isLoggedIn, user, logout }) => {
               isLoggedIn={isLoggedIn}
               latestMovies={latestMovies}
               latestMoviesLoading={latestMoviesLoading}
+              favoriteMovies={favoriteMovies}
+              addfavoriteMovie={addfavoriteMovie}
+              removefavoriteMovie={removefavoriteMovie}
+            />
+          )}
+        />
+        <Route
+          path={`${path}/movie/:movieId`}
+          component={() => (
+            <MovieDescription
+              isLoggedIn={isLoggedIn}
               favoriteMovies={favoriteMovies}
               addfavoriteMovie={addfavoriteMovie}
               removefavoriteMovie={removefavoriteMovie}
