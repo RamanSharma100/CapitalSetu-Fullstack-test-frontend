@@ -17,6 +17,7 @@ const Discover = ({
   popularMovies,
   favoriteMovies,
   addfavoriteMovie,
+  removefavoriteMovie,
 }) => {
   return (
     <MDBContainer className="pb-5 mb-5">
@@ -31,6 +32,7 @@ const Discover = ({
         heading="All Movies"
         favoriteMovies={favoriteMovies}
         addfavoriteMovie={addfavoriteMovie}
+        removefavoriteMovie={removefavoriteMovie}
       />
       {/* popular movies  */}
       <MovieCards
@@ -40,6 +42,7 @@ const Discover = ({
         heading="Popular Movies"
         favoriteMovies={favoriteMovies}
         addfavoriteMovie={addfavoriteMovie}
+        removefavoriteMovie={removefavoriteMovie}
       />
       {/* latest movies  */}
       <MovieCards
@@ -49,6 +52,7 @@ const Discover = ({
         heading="Latest Movies"
         favoriteMovies={favoriteMovies}
         addfavoriteMovie={addfavoriteMovie}
+        removefavoriteMovie={removefavoriteMovie}
       />
     </MDBContainer>
   );

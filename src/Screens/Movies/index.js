@@ -7,6 +7,7 @@ import {
   getFavoriteMovies,
   getLatestMovies,
   getPopularMovies,
+  removeFavorite,
 } from "../../apis/getMovies";
 import Navbar from "../../Components/Navbar";
 import All from "./All";
@@ -35,6 +36,20 @@ const Movies = ({ isLoggedIn, user, logout }) => {
     );
     toast.success("Added to favorites!");
     setFavoriteMovies((prevFavoriteMovies) => [...prevFavoriteMovies, item]);
+  };
+  const removefavoriteMovie = async (item) => {
+    const { success } = await removeFavorite(
+      user.token,
+      user.userData.email,
+      item
+    );
+    toast.success("Removed from favorites!");
+    setFavoriteMovies((prevFavoriteMovies) =>
+      prevFavoriteMovies.filter(
+        (itm) =>
+          JSON.stringify(itm.poster_path) !== JSON.stringify(item.poster_path)
+      )
+    );
   };
 
   useEffect(async () => {
@@ -93,6 +108,7 @@ const Movies = ({ isLoggedIn, user, logout }) => {
               latestMovies={latestMovies.slice(0, 8)}
               favoriteMovies={favoriteMovies}
               addfavoriteMovie={addfavoriteMovie}
+              removefavoriteMovie={removefavoriteMovie}
             />
           )}
         />
@@ -105,6 +121,7 @@ const Movies = ({ isLoggedIn, user, logout }) => {
               allMovies={allMovies}
               favoriteMovies={favoriteMovies}
               addfavoriteMovie={addfavoriteMovie}
+              removefavoriteMovie={removefavoriteMovie}
             />
           )}
         />
@@ -117,6 +134,7 @@ const Movies = ({ isLoggedIn, user, logout }) => {
               popularMoviesLoading={popularMoviesLoading}
               favoriteMovies={favoriteMovies}
               addfavoriteMovie={addfavoriteMovie}
+              removefavoriteMovie={removefavoriteMovie}
             />
           )}
         />
@@ -129,6 +147,7 @@ const Movies = ({ isLoggedIn, user, logout }) => {
               latestMoviesLoading={latestMoviesLoading}
               favoriteMovies={favoriteMovies}
               addfavoriteMovie={addfavoriteMovie}
+              removefavoriteMovie={removefavoriteMovie}
             />
           )}
         />
@@ -139,6 +158,7 @@ const Movies = ({ isLoggedIn, user, logout }) => {
               isLoggedIn={isLoggedIn}
               favoriteMovies={favoriteMovies}
               favoriteMoviesLoading={favoriteMoviesLoading}
+              removefavoriteMovie={removefavoriteMovie}
             />
           )}
         />

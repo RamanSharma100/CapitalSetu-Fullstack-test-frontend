@@ -38,3 +38,13 @@ export const addFavorite = async (token, email, item) => {
   });
   return data;
 };
+export const removeFavorite = async (token, email, item) => {
+  const { data } = await axios(`${API_ENDPOINT}/api/discover/removeFavorite`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: { email, data: item },
+  });
+  return data;
+};

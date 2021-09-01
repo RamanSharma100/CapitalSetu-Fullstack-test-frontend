@@ -7,7 +7,12 @@ import Card from "../../../Components/Card";
 
 import "./index.css";
 
-const Favorites = ({ isLoggedIn, favoriteMovies, favoriteMoviesLoading }) => {
+const Favorites = ({
+  isLoggedIn,
+  favoriteMovies,
+  favoriteMoviesLoading,
+  removefavoriteMovie,
+}) => {
   return (
     <MDBContainer>
       <Heading title="Favorite Movies" />
@@ -22,7 +27,12 @@ const Favorites = ({ isLoggedIn, favoriteMovies, favoriteMoviesLoading }) => {
       ) : favoriteMovies.length > 0 ? (
         <MDBRow className="mt-5">
           {favoriteMovies.map((item, index) => (
-            <Card item={item} key={index * item.popularity} favorite={true} />
+            <Card
+              item={item}
+              key={index * item.popularity}
+              favorite={true}
+              removefavoriteMovie={removefavoriteMovie}
+            />
           ))}
         </MDBRow>
       ) : (

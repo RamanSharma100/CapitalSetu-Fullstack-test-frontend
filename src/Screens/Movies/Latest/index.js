@@ -13,6 +13,7 @@ const Latest = ({
   latestMovies,
   favoriteMovies,
   addfavoriteMovie,
+  removefavoriteMovie,
 }) => {
   return (
     <MDBContainer>
@@ -39,6 +40,7 @@ const Latest = ({
                 ).length > 0
               }
               addfavoriteMovie={addfavoriteMovie}
+              removefavoriteMovie={removefavoriteMovie}
             />
           ))}
         </MDBRow>

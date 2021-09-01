@@ -13,6 +13,7 @@ const All = ({
   allMoviesLoading,
   favoriteMovies,
   addfavoriteMovie,
+  removefavoriteMovie,
 }) => {
   return (
     <MDBContainer>
@@ -39,6 +40,7 @@ const All = ({
                 ).length > 0
               }
               addfavoriteMovie={addfavoriteMovie}
+              removefavoriteMovie={removefavoriteMovie}
             />
           ))}
         </MDBRow>

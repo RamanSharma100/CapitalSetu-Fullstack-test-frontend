@@ -69,6 +69,7 @@ const MovieCards = ({
   path,
   favoriteMovies,
   addfavoriteMovie,
+  removefavoriteMovie,
 }) => {
   const sliderSettings = {
     dots: true,
@@ -152,6 +153,7 @@ const MovieCards = ({
                           WebkitTextStroke: "1px #017bf5",
                           color: "#017bf5",
                         }}
+                        onClick={() => removefavoriteMovie(item)}
                         title="Delete from Favorites"
                       ></i>
                     ) : (

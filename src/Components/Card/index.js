@@ -8,7 +8,13 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ item, index, favorite, addfavoriteMovie }) => {
+const Card = ({
+  item,
+  index,
+  favorite,
+  addfavoriteMovie,
+  removefavoriteMovie,
+}) => {
   return (
     <MDBCard
       border
@@ -54,6 +60,7 @@ const Card = ({ item, index, favorite, addfavoriteMovie }) => {
                 WebkitTextStroke: "1px #017bf5",
                 color: "#017bf5",
               }}
+              onClick={() => removefavoriteMovie(item)}
               title="Delete from Favorites"
             ></i>
           ) : (
