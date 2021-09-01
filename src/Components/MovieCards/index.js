@@ -142,7 +142,9 @@ const MovieCards = ({
                   </Link>
                   <MDBBtn color="transparent" className="shadow-0">
                     {favoriteMovies.filter(
-                      (itm) => JSON.stringify(itm) === JSON.stringify(item)
+                      (itm) =>
+                        JSON.stringify(itm.poster_path) ===
+                        JSON.stringify(item.poster_path)
                     ).length > 0 ? (
                       <i
                         className="fas fa-heart fs-5 "

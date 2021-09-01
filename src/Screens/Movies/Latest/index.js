@@ -33,7 +33,9 @@ const Latest = ({
               key={index * item.popularity}
               favorite={
                 favoriteMovies.filter(
-                  (itm) => JSON.stringify(itm) === JSON.stringify(item)
+                  (itm) =>
+                    JSON.stringify(itm.poster_path) ===
+                    JSON.stringify(item.poster_path)
                 ).length > 0
               }
               addfavoriteMovie={addfavoriteMovie}
