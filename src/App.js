@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import jwt_decode from "jwt-decode";
 
@@ -12,6 +12,18 @@ import Movies from "./Screens/Movies";
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+
+  const history = useHistory();
+
+  // logout user
+
+  const logout = () => {
+    localStorage.removeItem("mm_profile");
+    toast.success("LoggedOut Successfully!");
+    setUser(null);
+    setIsLoggedIn(false);
+    history.push("/");
+  };
 
   //checking login token is expired or not
   useEffect(() => {
@@ -45,7 +57,9 @@ const App = () => {
         <Route
           exact
           path="/"
-          component={() => <Home isLoggedIn={isLoggedIn} user={user} />}
+          component={() => (
+            <Home isLoggedIn={isLoggedIn} user={user} logout={logout} />
+          )}
         />
         {/* login route  */}
         <Route
@@ -57,7 +71,9 @@ const App = () => {
         {/* discover route  */}
         <Route
           path="/discover"
-          component={() => <Movies isLoggedIn={isLoggedIn} user={user} />}
+          component={() => (
+            <Movies isLoggedIn={isLoggedIn} user={user} logout={logout} />
+          )}
         />
       </Switch>
     </div>

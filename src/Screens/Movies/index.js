@@ -16,7 +16,7 @@ import Favorites from "./Favorites";
 import Latest from "./Latest";
 import Popular from "./Popular";
 
-const Movies = ({ isLoggedIn, user }) => {
+const Movies = ({ isLoggedIn, user, logout }) => {
   const { path } = useRouteMatch();
   const [allMoviesLoading, setAllMoviesLoading] = useState(true);
   const [allMovies, setAllMovies] = useState([]);
@@ -74,9 +74,10 @@ const Movies = ({ isLoggedIn, user }) => {
       setFavoriteMovies(results);
     }
   }, [favoriteMoviesLoading, isLoggedIn]);
+
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} user={user} />
+      <Navbar isLoggedIn={isLoggedIn} user={user} logout={logout} />
       <Switch>
         <Route
           exact

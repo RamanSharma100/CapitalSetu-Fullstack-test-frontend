@@ -5,10 +5,10 @@ import Navbar from "../../Components/Navbar";
 
 import "./index.css";
 
-const Home = ({ isLoggedIn, user }) => {
+const Home = ({ isLoggedIn, user, logout }) => {
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} user={user} />
+      <Navbar isLoggedIn={isLoggedIn} user={user} logout={logout} />
       <MDBContainer fluid style={{ height: "100vh" }} className="home-header">
         <MDBRow className="h-100">
           <MDBCol

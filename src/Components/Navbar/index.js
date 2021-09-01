@@ -13,7 +13,7 @@ import { Link, NavLink } from "react-router-dom";
 
 import "./index.css";
 
-const Navbar = ({ isLoggedIn, user }) => {
+const Navbar = ({ isLoggedIn, user, logout }) => {
   const [showNav, setShowNav] = useState(false);
   return (
     <MDBNavbar bgColor="primary" fixed="top" dark expand="lg" className="px-5">
@@ -52,7 +52,13 @@ const Navbar = ({ isLoggedIn, user }) => {
                   </p>
                 </MDBNavbarItem>
                 <MDBNavbarItem>
-                  <MDBBtn size="sm" className="ms-4" outline color="light">
+                  <MDBBtn
+                    size="sm"
+                    className="ms-4"
+                    onClick={logout}
+                    outline
+                    color="light"
+                  >
                     Logout
                   </MDBBtn>
                 </MDBNavbarItem>
