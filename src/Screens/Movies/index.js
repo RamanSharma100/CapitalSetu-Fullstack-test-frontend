@@ -30,27 +30,35 @@ const Movies = ({ isLoggedIn, user, logout }) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   const addfavoriteMovie = async (item) => {
-    const { success } = await addFavorite(
-      user.token,
-      user.userData.email,
-      item
-    );
-    toast.success("Added to favorites!");
-    setFavoriteMovies((prevFavoriteMovies) => [...prevFavoriteMovies, item]);
+    if (isLoggedIn) {
+      const { success } = await addFavorite(
+        user.token,
+        user.userData.email,
+        item
+      );
+      toast.success("Added to favorites!");
+      setFavoriteMovies((prevFavoriteMovies) => [...prevFavoriteMovies, item]);
+    } else {
+      toast.error("Please login first!");
+    }
   };
   const removefavoriteMovie = async (item) => {
-    const { success } = await removeFavorite(
-      user.token,
-      user.userData.email,
-      item
-    );
-    toast.success("Removed from favorites!");
-    setFavoriteMovies((prevFavoriteMovies) =>
-      prevFavoriteMovies.filter(
-        (itm) =>
-          JSON.stringify(itm.poster_path) !== JSON.stringify(item.poster_path)
-      )
-    );
+    if (isLoggedIn) {
+      const { success } = await removeFavorite(
+        user.token,
+        user.userData.email,
+        item
+      );
+      toast.success("Removed from favorites!");
+      setFavoriteMovies((prevFavoriteMovies) =>
+        prevFavoriteMovies.filter(
+          (itm) =>
+            JSON.stringify(itm.poster_path) !== JSON.stringify(item.poster_path)
+        )
+      );
+    } else {
+      toast.error("Please login first!");
+    }
   };
 
   useEffect(async () => {
